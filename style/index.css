@@ -2,7 +2,6 @@
   margin: 0;
   padding: 0;
 }
-
 .box {
   position: relative;
   width: 1000px;
@@ -12,21 +11,18 @@
 
   background-color: rgb(238, 236, 236);
 }
-
 .move {
-  height: 80px;
-  width: 80px;
-
-  background-color: darkgreen;
+    position: absolute;
+    width: 80px;
+    height: 80px;
+    background: red;
 }
 
 .stick {
   position: absolute;
-  left: 600px;
-  top: 400px;
-  height: 80px;
+  left: 400px;
+  top: 600px;
   width: 80px;
-
-  background-color: rgb(234, 250, 11);
-
+  height: 80px;
+  background: rgb(243, 247, 11);
 }
