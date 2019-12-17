@@ -15,39 +15,37 @@ move.onmousedown = function(e) {
   isDrop = true; 
 }
 
-document.onmousemove = function(e) {
-  //是否为可移动状态                　　　　　　　　　　　 　　　　　　　
+document.onmousemove = function(e) {              　　　　　　　　　　　 　　　　　　　
   if(isDrop) {　　　　
-      var e = e || window.event;                    　　
-      var moveX = e.clientX - x; //得到距离左边移动距离                    　　
-      var moveY = e.clientY - y; //得到距离上边移动距离
-      //可移动最大距离
-      var maxX = document.documentElement.clientWidth - move.offsetWidth;
-      var maxY = document.documentElement.clientHeight - move.offsetHeight;
+      var e = e || window.event;                   　　
+      var moveX = e.clientX - x;                   　　
+      var moveY = e.clientY - y; 
 
       //是否重合的判断及改变颜色
       var moveBoxX = move.offsetLeft;
       var moveBoxY = move.offsetTop;
       var isIntersect = (moveBoxX >= stickX - 80 && moveBoxX <= stickX + 80) 
                      && (moveBoxY >= stickY - 80 && moveBoxY <= stickY + 80)
-      //console.log(isIntersect);
       if(isIntersect) {
         stick.style.backgroundColor = "blue";
       }
-      else {
-        stick.style.backgroundColor = "yellow";
+
+      //限制红色div的移动范围在大盒子里
+      var box = document.getElementsByClassName("box")[0];
+      var maxX = box.clientWidth - move.clientWidth;
+      var maxY = box.clientHeight -move.clientHeight;
+      if(moveX <= 0) {
+        moveX = 0;
+      }
+      else if(moveX >= maxX) {
+        moveX = maxX;
       }
 
-      if(moveX < 0) {
-          moveX = 0
-      } else if(moveX > maxX) {
-          moveX = maxX;
+      if(moveY <= 0) {
+        moveY = 0;
       }
-
-      if(moveY < 0) {
-          moveY = 0;
-      } else if(moveY > maxY) {
-          moveY = maxY;
+      else if(moveY >= maxY) {
+        moveY = maxY;
       }
       move.style.left = moveX + "px";　　
       move.style.top = moveY + "px";　　　　　　　　　
